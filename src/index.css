@@ -219,6 +219,9 @@ max-width:200px !important
 }
 
 canvas{
-  height: 450px  !important;
-  
+  height: 500px  !important;
+}
+
+canvas:nth-child(1){
+  max-width: 500px;
 }

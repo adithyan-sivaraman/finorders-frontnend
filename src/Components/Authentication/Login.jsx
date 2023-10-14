@@ -1,6 +1,6 @@
 import { faEye, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { apiEndpoint } from "../../ApiUtils/apiendpoint";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Divider, Switch } from "@chakra-ui/react";
@@ -18,17 +18,21 @@ const UserLogin = () => {
     const [cpasswordType, setcPasswordType] = useState(true);
     const [firstLogin,setFirstLogin] = useState(false);
     const [error,setError] = useState(false);
+
+    useEffect(()=>{
+        console.log(error)
+    },[error])
     
     const handleInput = (e) => {
         const { name, value } = e.target;
         setLogin({ ...login, [name]: value });
-        if (name === 'cpassword' && login.password !== value) {
+        if (name === 'cpassword' && login.password && login.password !== value) {
             setError("Passwords not matching");
         } else if (name === 'cpassword' && login.password === value) {
             setError(false);
         }
 
-        if (name === 'password' && login.cpassword !== value) {
+        if (name === 'password' && login.cpassword && login.cpassword !== value) {
             setError("Passwords not matching");
         } else if (name === 'password' && login.cpassword === value) {
             setError(false);

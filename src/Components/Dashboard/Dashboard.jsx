@@ -61,8 +61,8 @@ const Dashboard = () => {
 
 
                     <div className='p-2 h-full overflow-y-auto flex w-full '>
-                        <div className=' w-full flex gap-4 px-4 py-2 flex-col md:flex-row '>
-                            <div className='flex flex-col gap-3 w-full  md:w-1/2'>
+                        <div className=' w-full flex gap-4 px-4 py-2 flex-col lg:flex-row '>
+                            <div className='flex flex-col gap-3 w-full  lg:w-1/2'>
                                 <div className='flex flex-row'>
                                     <label htmlFor='select' className='text-sm lg:text-base font-bold px-2 py-1 rounded-md bg-gray-200'>Select an option</label>
                                     <select
@@ -79,7 +79,7 @@ const Dashboard = () => {
                                 </div>
                                 {orderData && <OrderCountChart data={orderData} option={option} className />}
                             </div>
-                            <div className='w-full  md:w-1/2 flex flex-col  items-center p-2'>
+                            <div className='w-full  lg:w-1/2 flex flex-col  items-center p-2'>
                                 {/*
                     <p className='text-base lg:text-lg font-poppins tracking-wider font-bold'>Order Status</p>
                     */}
