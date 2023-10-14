@@ -17,6 +17,9 @@ const ListOrder = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [dialogText, setDialogText] = useState('');
     const [orderToDelete, setorderToDelete] = useState('');
+    const [option,setOption] = useState("1")
+    const [originalData,setoriginalData] = useState(false);
+
     const user = JSON.parse(localStorage.getItem("orders_user") ).user;
     const fetchOrders = async () => {
         setSpinner(true)
@@ -31,6 +34,7 @@ const ListOrder = () => {
             setTimeout(() => {
                 setSpinner(false)
                 setorderData(data);
+                setoriginalData(data)
             }, 1500)
         }
 
@@ -63,6 +67,22 @@ const ListOrder = () => {
             }
         }
         
+    }
+
+    const getBGColor = (date,status)=>{
+        if(status==="Completed"){
+            return "bg-blue-300 hover:bg-blue-600 hover:text-white "
+        }
+        else {
+            const dueDate = new Date(date);
+            const curDt = new Date();
+            if(dueDate>curDt){
+                return "bg-gray-300 hover:bg-gray-600 hover:text-white"
+            }
+            else {
+                return "bg-red-400 text-white hover:bg-red-600 text-white"
+            }
+        }
     }
 
     const handleClose = (action,orderID) => {
@@ -108,7 +128,33 @@ const ListOrder = () => {
         }, 2000)
     }
 
+    const handleSelect=(e)=>{
+        const {value} = e.target;
+        const option = Number(value);
+        setOption(value)
+        if(option===1){
+            setorderData(originalData)
+        }
+        else if(option===2 || option===3){
+            const filter = originalData.filter((item)=>{
+                const endDt = new Date(item.endDt);
+                const curDt = new Date();
+                if(option===2 && item.status === 'Pending' && curDt<endDt){
+                    return item;
+                }
+                else if (option===3 && item.status === 'Pending' && curDt>endDt){
+                    return item;
+                }
+            })
+            setorderData(filter)
+        }
 
+        else if(option===4){
+            
+            const filter = originalData.filter((item)=>item.status === 'Completed')
+            setorderData(filter)
+        }
+    }
 
     return (
         <div className="flex w-screen h-screen select-none font-lato">
@@ -156,7 +202,23 @@ const ListOrder = () => {
 
 
                 {!spinner && (<div className='p-2 h-full overflow-y-auto'>
-                    <p className='py-2 text-lg lg:text-xl font-bold tracking-wider font-lato'>List of Orders</p>
+                <div className='flex w-full items-center gap-3'>
+                <p className='py-2 text-lg lg:text-xl font-bold tracking-wider font-lato'>List of Orders</p>
+                
+                          <select
+                              onChange={handleSelect}
+                              id='select' 
+                              name='select' 
+                              value={option}
+                              className='border-2 border-indigo-900 text-blue-500 text-sm lg:text-base p-1'>
+                              <option value="1">All</option>
+                              <option value="2">Pending</option>
+                              <option value="3">Overdue</option>
+                              <option value="4">Completed</option>
+                          
+                          </select>
+                </div>
+                
                     <table className='w-full'>
                         <thead>
                             <tr >
@@ -172,7 +234,7 @@ const ListOrder = () => {
                             {orderData && orderData.map((item, index) => (
                                 <tr
 
-                                    key={index} className={checkOverDue(item.endDt,item.status)==="Overdue"?"bg-red-400 text-white":"hover:bg-blue-500 hover:text-white"} >
+                                    key={index} className={getBGColor(item.endDt,item.status)} >
                                     <td className='border-b border-indigo-500 px-2 p-1 text-sm lg:text-base'>{item.orderID}</td>
                                     <td className='border-b border-indigo-500 px-2 p-1 text-sm lg:text-base'>{item.custname}</td>
                                     <td className='border-b border-indigo-500 px-2 p-1 text-sm lg:text-base'>{item.orderDt.split("-").reverse().join("-")}</td>

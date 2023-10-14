@@ -10,7 +10,7 @@ const StatusChart = ({data})=>{
     let overDueCount= 0;
     let completeBeforeCount = 0;
     let completeAfterCount = 0;
-    
+
     data.map((item)=>{
         if(item.status==="Completed"){
             const endDate = new Date(item.endDt);
@@ -26,7 +26,7 @@ const StatusChart = ({data})=>{
         else{
             const curDt = new Date();
             const endDate = new Date(item.endDt);
-            if(endDate<curDt){
+            if(endDate>curDt){
                 pendingCount++
             }
             else {
@@ -35,6 +35,7 @@ const StatusChart = ({data})=>{
         }
     })
     // const totalCount = pendingCount+overDueCount+completeBeforeCount;
+    
     const options = {
 
         responsive: true,
@@ -56,7 +57,7 @@ const StatusChart = ({data})=>{
                 position: 'bottom',
                 labels: {
                     font: {
-                        size: 14,
+                        size: 16,
                         weight: 'bold',
                     },
                     color: 'black',
@@ -91,10 +92,12 @@ const StatusChart = ({data})=>{
             },
         ],
     };
-
+    
     return <Doughnut
     data={chartData}
     options={options}
+    
+    
 />;
     
 };
