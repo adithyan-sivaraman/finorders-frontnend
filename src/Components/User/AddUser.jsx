@@ -34,7 +34,7 @@ const AddUser = () => {
             headers: { 'Content-Type': 'application/json' },
         });
         const data = await response.json();
-        console.log(data);
+        
         if (data.message === "user created") {
             const { userId } = data
             setFormData(initialValues)

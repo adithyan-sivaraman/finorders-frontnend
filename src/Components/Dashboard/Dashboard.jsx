@@ -11,8 +11,6 @@ const Dashboard = () => {
     const [orderData, setorderData] = useState(false)
     const [option, setOption] = useState('1')
     const [spinner, setSpinner] = useState(false)
-    
-    
     const user = JSON.parse(localStorage.getItem("orders_user")).user;
     const fetchOrders = async () => {
         setSpinner(true)
@@ -36,22 +34,12 @@ const Dashboard = () => {
         fetchOrders();
     }, [])
 
-
-
-
-
-
-
     return (
         <div className="flex w-screen h-screen select-none font-lato overflow-hidden">
 
-         
-            
-            
             <div className='flex flex-col flex-1 bg-white overflow-x-hidden overflow-y-auto'>
                 <Topbar />
                 
-
                 {spinner && (
                     <div className='p-2 h-full overflow-y-auto w-full items-center justify-center flex gap-5'>
                         <p className='text-lg font-bold loading'>Loading</p>
@@ -64,7 +52,6 @@ const Dashboard = () => {
                         />
                     </div>
                 )}
-
 
                 {!spinner && (
                     <div className='p-2 h-full overflow-y-auto flex w-full '>
@@ -93,15 +80,9 @@ const Dashboard = () => {
                         {orderData && <StatusChart data={orderData} />}
 
                     </div>
-                        
                     </div>
-                  
-
                 </div>)}
-
             </div>
-
-
         </div>
     )
 };

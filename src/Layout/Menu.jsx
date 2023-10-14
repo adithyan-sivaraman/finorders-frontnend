@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const Menu = () => {
   const userType = JSON.parse(localStorage.getItem("orders_user")).type;
-  console.log(userType)
+  
   return (
 
     <div className='side-menu box-shadow'>

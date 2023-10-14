@@ -75,13 +75,13 @@ const OrderCountChart = ({ data, option }) => {
       const orderDate = new Date(item);
       const orderMonth = orderDate.getMonth()+1
     
-      console.log(labels)
+    
       if(labels.includes(Number(orderMonth))){ 
           countDate[orderMonth] ++;
       }
     
     })
-    console.log(countDate)
+    
   }
   const length = filterData.length;
   const options = {
