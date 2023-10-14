@@ -14,7 +14,7 @@ const Profile = ({ onClose }) => {
     const [dialogText, setDialogText] = useState('')
     const [updatePwd, setUpdatePwd] = useState(false)
     const [passwordType, setPasswordType] = useState(true);
-    const [btnDisabled,setBtnDisabled] = useState(true);
+    const [btnDisabled, setBtnDisabled] = useState(true);
     const [formData, setFormData] = useState({
         username: "",
         fname: "",
@@ -23,16 +23,16 @@ const Profile = ({ onClose }) => {
         mobile: "",
         type: "",
         department: "",
-        password:'',
+        password: '',
     })
     const handleSubmit = async (e) => {
         e.preventDefault();
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*_])[A-Za-z\d!@#$%&*_]{8,}$/;
         if (formData.password && !regex.test(formData.password)) {
-                showDialog("Please enter a valid password")
+            showDialog("Please enter a valid password")
             return;
         }
-        
+
         const response = await fetch(`${apiEndpoint}/user/update`, {
             method: 'PUT',
             body: JSON.stringify(formData),
@@ -40,7 +40,7 @@ const Profile = ({ onClose }) => {
         });
 
         const data = await response.json();
-        
+
         if (data.message === "user updated") {
 
             setDialogText(`User updated successfully`)
@@ -54,7 +54,7 @@ const Profile = ({ onClose }) => {
 
     }
 
-    const showDialog = (text)=>{
+    const showDialog = (text) => {
         setDialogText(text)
         setDialogOpen(true)
         setTimeout(() => {
@@ -65,8 +65,8 @@ const Profile = ({ onClose }) => {
     const fetchProfile = async () => {
         const response = await fetch(`${apiEndpoint}/user/profile/${userInfo.user}`);
         const data = await response.json();
-        
-        setFormData({...data,password:""});
+
+        setFormData({ ...data, password: "" });
     }
 
     useEffect(() => {
@@ -78,11 +78,11 @@ const Profile = ({ onClose }) => {
     }
 
     const handleInput = (e) => {
-        const {name, value} = e.target;
-        if(btnDisabled){
+        const { name, value } = e.target;
+        if (btnDisabled) {
             setBtnDisabled(false)
         }
-        
+
         setFormData({ ...formData, [name]: value });
     }
 
@@ -166,16 +166,16 @@ const Profile = ({ onClose }) => {
                         onChange={handleInput}
                         value={formData.mobile}
                     />
-               
+
                 </div>
 
                 <div className='flex items-center py-2 gap-5'>
                     <p>Update Password</p>
-                    <Switch onChange={()=>{
+                    <Switch onChange={() => {
                         setUpdatePwd(!updatePwd)
-                        setFormData({...formData,password:""})
-                    }}/>
-                    
+                        setFormData({ ...formData, password: "" })
+                    }} />
+
                 </div>
 
                 <div className='flex items-center py-2 relative'>
@@ -192,10 +192,10 @@ const Profile = ({ onClose }) => {
                         value={formData.password}
                     />
                     <FontAwesomeIcon
-                    icon={faEye}
-                    className="absolute right-3 top-4 text-xl cursor-pointer z-10"
-                    onClick={() => setPasswordType(!passwordType)}
-                />
+                        icon={faEye}
+                        className="absolute right-3 top-4 text-xl cursor-pointer z-10"
+                        onClick={() => setPasswordType(!passwordType)}
+                    />
                 </div>
                 <div className="pwd-rules">
                     <span className="">Password must be contain atleast</span>
@@ -207,9 +207,9 @@ const Profile = ({ onClose }) => {
                 </div>
 
 
-                <button 
-                disabled={btnDisabled}
-                type='submit' className='btn-grad'>Update</button>
+                <button
+                    disabled={btnDisabled}
+                    type='submit' className='btn-grad'>Update</button>
             </form>
         </div>
     )

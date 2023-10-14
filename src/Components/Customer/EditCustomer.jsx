@@ -7,7 +7,7 @@ import { faAddressBook, faCircleUser, faEnvelope, faG, faMapMarker, faMapPin, fa
 import { apiEndpoint } from "../../ApiUtils/apiendpoint";
 import { useState } from 'react';
 
-const EditCustomer = ({ userData,onClose }) => {
+const EditCustomer = ({ userData, onClose }) => {
 
     const [formData, setFormData] = useState(userData)
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -39,7 +39,7 @@ const EditCustomer = ({ userData,onClose }) => {
         setFormData({ ...formData, [name]: value })
     }
 
-    const handleClose=() =>{
+    const handleClose = () => {
         onClose()
     }
 

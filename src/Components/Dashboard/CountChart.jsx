@@ -37,7 +37,7 @@ const OrderCountChart = ({ data, option }) => {
   let filterData = [];
   let labels = [];
   const countDate = {}
-  
+
   if (option === "1" || option === "2") {
     const date = new Date();
     const month = option === "1" ? date.getMonth() + 1 : date.getMonth();
@@ -66,22 +66,22 @@ const OrderCountChart = ({ data, option }) => {
   if (option === "3") {
     const date = new Date();
     const month = date.getMonth();
-    labels.push( month - 2, month - 1,month)
-    countDate[`${month-2}`] = 0;
-    countDate[`${month-1}`] = 0;
+    labels.push(month - 2, month - 1, month)
+    countDate[`${month - 2}`] = 0;
+    countDate[`${month - 1}`] = 0;
     countDate[`${month}`] = 0;
-    filterData = data.map((item)=>item.orderDt).filter((item)=>{
-      
+    filterData = data.map((item) => item.orderDt).filter((item) => {
+
       const orderDate = new Date(item);
-      const orderMonth = orderDate.getMonth()+1
-    
-    
-      if(labels.includes(Number(orderMonth))){ 
-          countDate[orderMonth] ++;
+      const orderMonth = orderDate.getMonth() + 1
+
+
+      if (labels.includes(Number(orderMonth))) {
+        countDate[orderMonth]++;
       }
-    
+
     })
-    
+
   }
   const length = filterData.length;
   const options = {
@@ -147,14 +147,14 @@ const OrderCountChart = ({ data, option }) => {
     },
 
   };
-  
+
   const orderData = {
-    labels: Number(option)<=2?labels.map(item => `${item}`):labels.map((index) => `${months[index-1]}`),
+    labels: Number(option) <= 2 ? labels.map(item => `${item}`) : labels.map((index) => `${months[index - 1]}`),
     datasets: [
       {
         label: length !== 0 ? 'No of Orders Created' : 'No Orders Created',
         data: Object.values(countDate) || [],
-        backgroundColor: '#0096FF' ,
+        backgroundColor: '#0096FF',
       },
     ],
   };

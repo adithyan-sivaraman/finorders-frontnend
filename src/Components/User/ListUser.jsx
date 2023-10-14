@@ -19,13 +19,13 @@ const ListUser = () => {
         setSpinner(true)
         const response = await fetch(`${apiEndpoint}/user/list`);
         const data = await response.json();
-        if(data){
-            setTimeout(()=>{
+        if (data) {
+            setTimeout(() => {
                 setSpinner(false)
                 setuserData(data);
-            },1500)
+            }, 1500)
         }
-        
+
 
     }
     const filterUser = (username) => {
@@ -41,7 +41,7 @@ const ListUser = () => {
     const handleDelete = async () => {
 
         //for delete action use this endpoint
-        if(actionType==="delete"){
+        if (actionType === "delete") {
             const response = await fetch(`${apiEndpoint}/user/delete/${userToUpdate}`, {
                 method: 'DELETE',
             });
@@ -60,43 +60,43 @@ const ListUser = () => {
 
         //for deactivation and activation action use this endpoint
         else {
-            const action = actionType==="deactivate"?"deactivate":"activate";
+            const action = actionType === "deactivate" ? "deactivate" : "activate";
             const response = await fetch(`${apiEndpoint}/user/${action}/${userToUpdate}`, {
                 method: 'PUT',
             });
             const data = await response.json();
             let updatedUsers = "";
             if (data.message === "user deactivated") {
-                
-                updatedUsers = userData.map((user) =>{
-                    if(user.username===userToUpdate){
-                        return {...user,active:false}
+
+                updatedUsers = userData.map((user) => {
+                    if (user.username === userToUpdate) {
+                        return { ...user, active: false }
                     }
                     return user;
                 })
                 setuserToUpdate("")
                 showDialog(`User Deactivated successfully`)
-            
+
             }
             else if (data.message === "user activated") {
-                
-                updatedUsers = userData.map((user) =>{
-                    if(user.username===userToUpdate){
-                        return {...user,active:true}
+
+                updatedUsers = userData.map((user) => {
+                    if (user.username === userToUpdate) {
+                        return { ...user, active: true }
                     }
                     return user;
                 })
                 setuserToUpdate("")
                 showDialog(`User Activated successfully`)
-        
+
             }
             setuserData(updatedUsers)
-            
+
         }
-        
+
     }
 
-    const showDialog=(text)=>{
+    const showDialog = (text) => {
         setDialogText(text)
         setDialogOpen(true)
         setTimeout(() => {
@@ -108,12 +108,12 @@ const ListUser = () => {
         fetchUsers();
     }, [])
 
-    const handleAction =(action,username)=>{
+    const handleAction = (action, username) => {
 
-        if(action==="delete"){
+        if (action === "delete") {
             setDialogText("Are you sure to delete this user? Click confirm to delete")
         }
-        else if(action==="deactivate"){
+        else if (action === "deactivate") {
             setDialogText(`Are you sure to deactivate this user? Click confirm to deactivate`)
         }
         else {
@@ -149,14 +149,14 @@ const ListUser = () => {
 
                 </dialog>
             )}
-            
+
             <div className='flex flex-col grow bg-white'>
                 <Topbar />
                 {showForm && <EditUser userData={filterData} onClose={handleClose} />}
 
                 {spinner && (
                     <div className='p-2 h-full overflow-y-auto w-full items-center justify-center flex gap-5'>
-                    <p className='text-lg font-bold loading'>Loading</p>
+                        <p className='text-lg font-bold loading'>Loading</p>
                         <Spinner
                             speed='0.7s'
                             thickness='4px'
@@ -194,22 +194,22 @@ const ListUser = () => {
                                                 onClick={() => filterUser(item.username)}
                                                 icon={faPenToSquare} className='px-2 cursor-pointer' title='click to edit user' />
                                             <FontAwesomeIcon
-                                            title='click to delete user'
+                                                title='click to delete user'
                                                 onClick={() => {
-                                                    handleAction('delete',item.username)
+                                                    handleAction('delete', item.username)
                                                 }}
                                                 icon={faTrashCan} className='px-2 cursor-pointer' />
-                                                <FontAwesomeIcon 
+                                            <FontAwesomeIcon
                                                 onClick={() => {
-                                                    if(item.active){
-                                                        handleAction('deactivate',item.username)
+                                                    if (item.active) {
+                                                        handleAction('deactivate', item.username)
                                                     }
                                                     else {
-                                                        handleAction('activate',item.username)
+                                                        handleAction('activate', item.username)
                                                     }
                                                 }}
-                                                title={item.active?'click to deactivate user':'click to activate user'}
-                                                icon={item.active?faBan:faCheck}  className='px-2 cursor-pointer'  />
+                                                title={item.active ? 'click to deactivate user' : 'click to activate user'}
+                                                icon={item.active ? faBan : faCheck} className='px-2 cursor-pointer' />
                                         </td>
                                     </tr>
                                 ))}

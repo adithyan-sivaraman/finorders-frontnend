@@ -15,12 +15,12 @@ const ListCustomer = () => {
         setSpinner(true)
         const response = await fetch(`${apiEndpoint}/customer/list`);
         const data = await response.json();
-        
-        if(data){
-            setTimeout(()=>{
+
+        if (data) {
+            setTimeout(() => {
                 setSpinner(false)
                 setuserData(data);
-            },1500)
+            }, 1500)
         }
 
     }
@@ -33,21 +33,21 @@ const ListCustomer = () => {
     useEffect(() => {
         fetchCustomers();
     }, [])
-    
-    const handleClose=() =>{
-         setShowForm(!showForm)
-        }
+
+    const handleClose = () => {
+        setShowForm(!showForm)
+    }
 
     return (
         <div className="flex w-screen h-screen select-none font-lato">
-            
+
             <div className='flex flex-col grow bg-white'>
                 <Topbar />
                 {showForm && <EditCustomer userData={filterData} onClose={handleClose} />}
-                
+
                 {spinner && (
                     <div className='p-2 h-full overflow-y-auto w-full items-center justify-center flex gap-5'>
-                    <p className='text-lg font-bold loading'>Loading</p>
+                        <p className='text-lg font-bold loading'>Loading</p>
                         <Spinner
                             speed='0.7s'
                             thickness='4px'
@@ -58,8 +58,8 @@ const ListCustomer = () => {
                     </div>
                 )}
 
-                
-              {!spinner && (  <div className='p-2 h-full overflow-y-auto'>
+
+                {!spinner && (<div className='p-2 h-full overflow-y-auto'>
                     <p className='py-2 text-lg lg:text-xl font-bold tracking-wider font-lato'>List of Customers</p>
                     <table className='w-full'>
                         <thead>

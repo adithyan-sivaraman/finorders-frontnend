@@ -10,7 +10,7 @@ function Topbar() {
   const [menuVisible, setMenuVisible] = useState(false)
   const [profileForm, showProfileForm] = useState(false)
   const navigate = useNavigate();
- 
+
   const handleLogout = () => {
     localStorage.removeItem("orders_user")
     navigate('/');
@@ -18,14 +18,14 @@ function Topbar() {
 
   const handleClose = () => {
     showProfileForm(false)
-}
- 
-return (
+  }
+
+  return (
     <div className='header top-bar '>
 
       {menuVisible && <Menu />}
       {profileForm && <Profile onClose={handleClose} />}
-    
+
       <p className='text-sm md:text-lg lg:text-2xl font-bold w-1/4'>FinOrders</p>
       <p className="usertext"> Welcome {username}</p>
 

@@ -26,8 +26,8 @@ const AddOrder = () => {
     const [customerNames, setCustomerNames] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [selectedServices, setSelectedServices] = useState([]);
-    const user =  JSON.parse(localStorage.getItem("orders_user")).user
-    
+    const user = JSON.parse(localStorage.getItem("orders_user")).user
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (selectedServices.length === 0) {
@@ -36,8 +36,8 @@ const AddOrder = () => {
         }
         setLoader(true);
         const orders = {
-            data:{ ...formData, services: selectedServices.join(',') },
-            user:user
+            data: { ...formData, services: selectedServices.join(',') },
+            user: user
         }
         const response = await fetch(`${apiEndpoint}/orders/add`, {
             method: 'POST',
@@ -70,7 +70,7 @@ const AddOrder = () => {
                 headers: { 'Content-Type': 'application/json' },
             });
             const data = await response.json();
-            
+
             setCustomerNames(data)
         }
         else {
@@ -131,7 +131,7 @@ const AddOrder = () => {
 
                 </dialog>
             )}
-            
+
             <div className='flex flex-col grow bg-white'>
                 <Topbar />
                 <p className='px-4 py-2 text-lg lg:text-xl font-bold tracking-wider'>Create a service order</p>
@@ -317,7 +317,7 @@ const AddOrder = () => {
 
                                                 {customerNames.length === 0 && (
                                                     <tr>
-                                                    <td className='font-bold p-2 border-b border-indigo-500' colSpan={2}>No Customers Found</td>
+                                                        <td className='font-bold p-2 border-b border-indigo-500' colSpan={2}>No Customers Found</td>
                                                     </tr>
                                                 )}
                                             </tbody>

@@ -11,33 +11,33 @@ import ResetPassword from './Components/Authentication/Reset'
 import ListOrder from './Components/Orders/ListOrder'
 import Dashboard from './Components/Dashboard/Dashboard'
 import PageNotFound from './Components/NotFound'
- function App() {
+function App() {
 
   return (
     <Router>
-    <Routes>
-    <Route path='/' Component={UserLogin} />
-    <Route path='/reset' Component={ResetPassword} />
-    <Route path='*' Component={PageNotFound} />
-    <Route path='/dashboard' element={<ProtectedRoute element={<Dashboard />} />} /> 
-    
-    <Route path='customer'>
-    <Route path='add' element={<ProtectedRoute element={<AddCustomer />} />} />
-    <Route path='list' element={<ProtectedRoute element={<ListCustomer />} />} />
-    </Route>
-    
-    <Route path='order'>
-    <Route path='add' element={<ProtectedRoute element={<AddOrder />} />} />
-    <Route path='list' element={<ProtectedRoute element={<ListOrder />} />} />
-    </Route>
-    
-    <Route path='user'>
-    <Route path='add' element={<ProtectedRoute element={<AddUser />} />} />
-    <Route path='list' element={<ProtectedRoute element={<ListUser />} />} /> 
-    </Route>
-    
-    </Routes>
-  </Router>
+      <Routes>
+        <Route path='/' Component={UserLogin} />
+        <Route path='/reset' Component={ResetPassword} />
+        <Route path='*' Component={PageNotFound} />
+        <Route path='/dashboard' element={<ProtectedRoute element={<Dashboard />} />} />
+
+        <Route path='customer'>
+          <Route path='add' element={<ProtectedRoute element={<AddCustomer />} />} />
+          <Route path='list' element={<ProtectedRoute element={<ListCustomer />} />} />
+        </Route>
+
+        <Route path='order'>
+          <Route path='add' element={<ProtectedRoute element={<AddOrder />} />} />
+          <Route path='list' element={<ProtectedRoute element={<ListOrder />} />} />
+        </Route>
+
+        <Route path='user'>
+          <Route path='add' element={<ProtectedRoute element={<AddUser />} />} />
+          <Route path='list' element={<ProtectedRoute element={<ListUser />} />} />
+        </Route>
+
+      </Routes>
+    </Router>
   )
 }
 

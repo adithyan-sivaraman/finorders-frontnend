@@ -7,6 +7,6 @@ export const servicesList = [
     "Valuation - Immovable Property",
     "Capital Markets - Raising of Capital", "Capital Markets - Listing of Shares", "Capital Markets - FDI",
     "Forensic Audit", "Due Diligence",
-    "Compliance - Income Tax & GST","Compliance - Corporate Law","Compliance-Labor Law","Compliance - FEMA","Compliance - Others",
+    "Compliance - Income Tax & GST", "Compliance - Corporate Law", "Compliance-Labor Law", "Compliance - FEMA", "Compliance - Others",
     "O&M - Virtual CFO", "O&M - Business Setup"
 ]

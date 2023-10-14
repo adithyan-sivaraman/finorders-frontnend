@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faIndianRupeeSign, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const ViewOrder = ({ order, onClose }) => {
-    
+
     const [formData,] = useState(order)
 
     const handleClose = () => {
@@ -16,11 +16,11 @@ const ViewOrder = ({ order, onClose }) => {
     return (
         <div className="flex w-screen h-screen select-none font-lato fixed top-0 left-0 justify-center items-center z-50 bg-opacity">
 
-        
+
             <form id='viewOrder' className='bg-white'>
-            <FontAwesomeIcon
-            onClick={handleClose}
-            icon={faXmark} className="cursor-pointer hover:bg-blue-500 hover:text-white p-1" />
+                <FontAwesomeIcon
+                    onClick={handleClose}
+                    icon={faXmark} className="cursor-pointer hover:bg-blue-500 hover:text-white p-1" />
                 <div className='flex flex-col sm:flex-row sm:items-center py-1 sm:py-2'>
                     <label htmlFor='custname' className='text-sm lg:text-base font-bold w-full sm:w-1/3 flex items-center'>Customer Name</label>
                     <input

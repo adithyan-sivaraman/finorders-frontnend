@@ -1,6 +1,6 @@
 import { faEye, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { apiEndpoint } from "../../ApiUtils/apiendpoint";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Divider, Switch } from "@chakra-ui/react";
@@ -12,16 +12,13 @@ const UserLogin = () => {
     const [login, setLogin] = useState({
         username: "",
         password: "",
-        cpassword:"",
+        cpassword: "",
     })
     const [passwordType, setPasswordType] = useState(true);
     const [cpasswordType, setcPasswordType] = useState(true);
-    const [firstLogin,setFirstLogin] = useState(false);
-    const [error,setError] = useState(false);
+    const [firstLogin, setFirstLogin] = useState(false);
+    const [error, setError] = useState(false);
 
-    useEffect(()=>{
-        console.log(error)
-    },[error])
     
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -42,9 +39,9 @@ const UserLogin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*_])[A-Za-z\d!@#$%&*_]{8,}$/;
-           
+
         if (firstLogin && login.password && !regex.test(login.password)) {
-            
+
             setDialogText("Please Enter a valid password");
             setDialogOpen(true)
             setTimeout(() => {
@@ -55,15 +52,15 @@ const UserLogin = () => {
 
         const response = await fetch(`${apiEndpoint}/user/login`, {
             method: 'POST',
-            body: JSON.stringify({data:login,fLogin:firstLogin}),
+            body: JSON.stringify({ data: login, fLogin: firstLogin }),
             headers: { 'Content-Type': 'application/json' },
         });
         const data = await response.json();
-        
+
 
         if (data.message === "valid login") {
             const { user, type } = data;
-            localStorage.setItem("orders_user", JSON.stringify({ user: user, type: type}));
+            localStorage.setItem("orders_user", JSON.stringify({ user: user, type: type }));
             navigate('dashboard');
         }
 
@@ -135,7 +132,7 @@ const UserLogin = () => {
                         required
                         autoComplete="on"
                         type={passwordType ? 'password' : 'text'}
-                        placeholder={firstLogin?"New Password":"******************"} />
+                        placeholder={firstLogin ? "New Password" : "******************"} />
                     <FontAwesomeIcon
                         icon={faEye}
                         className="absolute right-3 top-2 text-xl cursor-pointer"
@@ -144,26 +141,26 @@ const UserLogin = () => {
                 </div>
                 {firstLogin && (
                     <div className="mt-4 flex flex-row w-full items-center relative ">
-                    <FontAwesomeIcon icon={faLock} className="login-icon" />
-                    <input className="login-input"
-                        onInput={handleInput}
-                        value={login.cpassword}
-                        name="cpassword"
-                        id="cpassword"
-                        required
-                        autoComplete="on"
-                        type={cpasswordType ? 'password' : 'text'}
-                        placeholder="Confirm Password" />
-                    <FontAwesomeIcon
-                        icon={faEye}
-                        className="absolute right-3 top-2 text-xl cursor-pointer"
-                        onClick={() => setcPasswordType(!cpasswordType)}
-                    />
-                </div>
+                        <FontAwesomeIcon icon={faLock} className="login-icon" />
+                        <input className="login-input"
+                            onInput={handleInput}
+                            value={login.cpassword}
+                            name="cpassword"
+                            id="cpassword"
+                            required
+                            autoComplete="on"
+                            type={cpasswordType ? 'password' : 'text'}
+                            placeholder="Confirm Password" />
+                        <FontAwesomeIcon
+                            icon={faEye}
+                            className="absolute right-3 top-2 text-xl cursor-pointer"
+                            onClick={() => setcPasswordType(!cpasswordType)}
+                        />
+                    </div>
                 )}
 
                 {firstLogin && error && <span className="error-message">* {error}</span>}
-               
+
                 {firstLogin && (
                     <div className="pwd-rules">
                         <span className="">Password must be contain atleast</span>
@@ -179,13 +176,13 @@ const UserLogin = () => {
                         className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer">
                         First Time Login
                     </p>
-                    <Switch 
-                    onChange={()=>{
-                    setFirstLogin(!firstLogin)
-                    setError(false)
-                    }}
-                    name="flogin"
-                    size="md" colorScheme="red"/>
+                    <Switch
+                        onChange={() => {
+                            setFirstLogin(!firstLogin)
+                            setError(false)
+                        }}
+                        name="flogin"
+                        size="md" colorScheme="red" />
                 </div>
 
                 <button
@@ -196,10 +193,10 @@ const UserLogin = () => {
                 </button>
                 <Divider />
                 <p
-                onClick={() => navigate('/reset')}
-                className="inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800 cursor-pointer">
-                Forgot Password? <span className="underline">Reset</span>
-            </p>
+                    onClick={() => navigate('/reset')}
+                    className="inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800 cursor-pointer">
+                    Forgot Password? <span className="underline">Reset</span>
+                </p>
 
             </form>
         </div>
