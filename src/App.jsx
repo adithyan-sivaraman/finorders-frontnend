@@ -10,6 +10,7 @@ import UserLogin from './Components/Authentication/Login'
 import ResetPassword from './Components/Authentication/Reset'
 import ListOrder from './Components/Orders/ListOrder'
 import Dashboard from './Components/Dashboard/Dashboard'
+import PageNotFound from './Components/NotFound'
  function App() {
 
   return (
@@ -17,6 +18,7 @@ import Dashboard from './Components/Dashboard/Dashboard'
     <Routes>
     <Route path='/' Component={UserLogin} />
     <Route path='/reset' Component={ResetPassword} />
+    <Route path='*' Component={PageNotFound} />
     <Route path='/dashboard' element={<ProtectedRoute element={<Dashboard />} />} /> 
     <Route path='/addcust' element={<ProtectedRoute element={<AddCustomer />} />} />
     <Route path='/listcust' element={<ProtectedRoute element={<ListCustomer />} />} />
