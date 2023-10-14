@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Lato&family=Montserrat&family=Poppins&display=swap');
+@tailwind base;
+@tailwind components;
+
+@layer components {
+
+  .header{
+    @apply flex  bg-indigo-100 font-poppins select-none  items-center px-4 py-2 gap-5 h-14 relative
+  }
+
+  .usertext{
+    @apply text-base sm:text-lg lg:text-xl tracking-wider flex-1
+  }
+
+  .logout{
+    @apply border border-white px-2 py-2 rounded-full cursor-pointer bg-black text-white sm:w-6 sm:h-6
+  }
+
+  .usericon{
+    @apply border border-white px-2 py-2 rounded-full cursor-pointer bg-black text-white sm:w-6 sm:h-6
+  }
+  .side-menu{
+    @apply  border border-indigo-400 bg-indigo-100 font-poppins select-none fixed
+  }
+  .login-input{
+    @apply shadow appearance-none border  rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none  w-full
+  }
+  .login-icon{
+    @apply shadow appearance-none text-xl border py-2 px-3 rounded
+  }
+
+  .icons{
+    @apply shadow appearance-none text-xl border py-2 px-3 rounded w-8
+  }
+
+  .pwd-rules {
+    @apply mt-4 flex flex-col w-full relative font-lato
+  }
+
+  .pwd-rules span:first-child {
+    @apply text-sm lg:text-base font-extrabold tracking-wider text-red-900
+  }
+
+  .pwd-rules span:not(:first-child) {
+    @apply text-xs lg:text-sm font-bold tracking-wider text-red-900
+  }
+  .error-message {
+    @apply text-red-900 font-bold italic block text-sm lg:text-base mt-1 w-full
+  }
+
+  .loader{
+    @apply fixed top-0 left-0  h-screen w-screen  items-center justify-center flex gap-5 z-50
+  }
+}
+
+
+@tailwind utilities;
+
+
+body {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+#root {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  max-width: none !important;
+  text-align: left;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.box-shadow{
+    box-shadow: #00000030 0 10px 20px,#0000003b 0 6px 6px;
+}
+
+.top-bar{
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.container {
+  padding: 0 5px!important;
+  width: 100%;
+  max-width: 400px!important;
+
+}
+
+         
+.btn-grad {
+  background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  letter-spacing: 0.05em;
+}
+
+.btn-grad:hover {
+  transform: scale(1.1);
+}
+
+.dialog-parent {
+  z-index: 60;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+.dialog {
+  background-color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.addCustomer,.addUser{
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  padding:10px;
+}
+
+.editUser,.editCustomer,.completeOrder,.profile{
+  width: 100%;
+  max-width: 500px;
+  padding:10px;
+}
+
+.viewOrder{
+  background-color: white;
+  width: 700px;
+}
+#editUser,#complete{
+background-color: rgba(0, 0, 0, 0.3);
+}
+
+.addOrder{
+  width: 100%;
+  padding:10px;
+  max-width: 900px;
+}
+
+#viewOrder{
+  width: 100%;
+  padding:10px;
+  max-width: 700px;
+}
+
+.loading{
+  animation: opacity 0.75s linear infinite;
+}
+
+@keyframes opacity {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+}
+
+.bg-opacity{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#addOrder label{
+max-width:200px !important
+}
+
+#addOrder input,select,textarea{
+  max-width:400px !important
+  }
+
+  #viewOrder label{
+    max-width:200px !important
+    }
+    
+    #viewOrder input,select,textarea{
+      max-width:400px !important
+      }
+    
+
+  #servicesList{
+    max-width: 600px !important;
+    width: 100%;
+    min-height: 60px;
+  }
+
+  
+.side-menu{
+  top:56px;
+  right:10px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+}
+
+canvas{
+  height: 400px  !important;
+  
+}
