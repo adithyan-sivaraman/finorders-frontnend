@@ -68,7 +68,7 @@ const StatusChart = ({data})=>{
                 text: `Chart of Order Status`,
                 color: 'black',
                 font: {
-                    size: 18
+                    size: 24
                 }
             },
         },
