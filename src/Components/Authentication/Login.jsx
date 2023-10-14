@@ -17,14 +17,38 @@ const UserLogin = () => {
     const [passwordType, setPasswordType] = useState(true);
     const [cpasswordType, setcPasswordType] = useState(true);
     const [firstLogin,setFirstLogin] = useState(false);
+    const [error,setError] = useState(false);
     
     const handleInput = (e) => {
         const { name, value } = e.target;
         setLogin({ ...login, [name]: value });
+        if (name === 'cpassword' && login.password !== value) {
+            setError("Passwords not matching");
+        } else if (name === 'cpassword' && login.password === value) {
+            setError(false);
+        }
+
+        if (name === 'password' && login.cpassword !== value) {
+            setError("Passwords not matching");
+        } else if (name === 'password' && login.cpassword === value) {
+            setError(false);
+        }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*_])[A-Za-z\d!@#$%&*_]{8,}$/;
+           
+        if (firstLogin && login.password && !regex.test(login.password)) {
+            
+            setDialogText("Please Enter a valid password");
+            setDialogOpen(true)
+            setTimeout(() => {
+                setDialogOpen(false);
+            }, 2000)
+            return;
+        }
+
         const response = await fetch(`${apiEndpoint}/user/login`, {
             method: 'POST',
             body: JSON.stringify({data:login,fLogin:firstLogin}),
@@ -134,6 +158,18 @@ const UserLogin = () => {
                 </div>
                 )}
 
+                {firstLogin && error && <span className="error-message">* {error}</span>}
+               
+                {firstLogin && (
+                    <div className="pwd-rules">
+                        <span className="">Password must be contain atleast</span>
+                        <span className="">8 Characters</span>
+                        <span className="">1 Capital Letter</span>
+                        <span className="">1 Small Letter</span>
+                        <span className="">1 Number</span>
+                        <span>1 Special Character ( ! @ # $ % & * _ )</span>
+                    </div>
+                )}
                 <div className="flex flex-row mt-4 w-full gap-3">
                     <p
                         className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer">
@@ -142,12 +178,14 @@ const UserLogin = () => {
                     <Switch 
                     onChange={()=>{
                     setFirstLogin(!firstLogin)
+                    setError(false)
                     }}
                     name="flogin"
                     size="md" colorScheme="red"/>
                 </div>
 
                 <button
+                    disabled={error}
                     className="btn-grad"
                     type="submit">
                     Sign In
