@@ -210,6 +210,7 @@ const ListOrder = () => {
                               id='select' 
                               name='select' 
                               value={option}
+                              disabled={Object.values(originalData).length===0}
                               className='border-2 border-indigo-900 text-blue-500 text-sm lg:text-base p-1'>
                               <option value="1">All</option>
                               <option value="2">Pending</option>

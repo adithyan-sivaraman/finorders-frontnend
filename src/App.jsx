@@ -20,12 +20,22 @@ import PageNotFound from './Components/NotFound'
     <Route path='/reset' Component={ResetPassword} />
     <Route path='*' Component={PageNotFound} />
     <Route path='/dashboard' element={<ProtectedRoute element={<Dashboard />} />} /> 
-    <Route path='/addcust' element={<ProtectedRoute element={<AddCustomer />} />} />
-    <Route path='/listcust' element={<ProtectedRoute element={<ListCustomer />} />} />
-    <Route path='/adduser' element={<ProtectedRoute element={<AddUser />} />} />
-    <Route path='/listuser' element={<ProtectedRoute element={<ListUser />} />} /> 
-    <Route path='/addorder' element={<ProtectedRoute element={<AddOrder />} />} />
-    <Route path='/listorder' element={<ProtectedRoute element={<ListOrder />} />} />
+    
+    <Route path='customer'>
+    <Route path='add' element={<ProtectedRoute element={<AddCustomer />} />} />
+    <Route path='list' element={<ProtectedRoute element={<ListCustomer />} />} />
+    </Route>
+    
+    <Route path='order'>
+    <Route path='add' element={<ProtectedRoute element={<AddOrder />} />} />
+    <Route path='list' element={<ProtectedRoute element={<ListOrder />} />} />
+    </Route>
+    
+    <Route path='user'>
+    <Route path='add' element={<ProtectedRoute element={<AddUser />} />} />
+    <Route path='list' element={<ProtectedRoute element={<ListUser />} />} /> 
+    </Route>
+    
     </Routes>
   </Router>
   )
