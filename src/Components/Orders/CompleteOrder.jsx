@@ -27,7 +27,7 @@ const OrderComplete = ({ order, onClose }) => {
             headers: { 'Content-Type': 'application/json' },
         });
         const data = await response.json();
-        console.log(data);
+        
         if (data.message === "order updated") {
             setDialogText(`Order status updated successfully.`)
             setDialogOpen(true)

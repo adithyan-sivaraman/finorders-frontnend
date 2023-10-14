@@ -70,7 +70,7 @@ const AddOrder = () => {
                 headers: { 'Content-Type': 'application/json' },
             });
             const data = await response.json();
-            console.log(data)
+            
             setCustomerNames(data)
         }
         else {

@@ -20,7 +20,7 @@ const Dashboard = () => {
             headers: { "content-type": "application/json" }
         });
         const data = await response.json();
-        console.log(data)
+        
         if (data) {
             setTimeout(() => {
                 setSpinner(false)

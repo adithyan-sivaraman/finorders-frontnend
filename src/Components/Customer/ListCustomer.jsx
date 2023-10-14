@@ -33,11 +33,7 @@ const ListCustomer = () => {
     useEffect(() => {
         fetchCustomers();
     }, [])
-    useEffect(() => {
-    console.log(showForm)
-    }, [showForm]);
-
-
+    
     const handleClose=() =>{
          setShowForm(!showForm)
         }
