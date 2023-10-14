@@ -57,7 +57,7 @@ const StatusChart = ({data})=>{
                 position: 'bottom',
                 labels: {
                     font: {
-                        size: 16,
+                        size: 18,
                         weight: 'bold',
                     },
                     color: 'black',
