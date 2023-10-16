@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import Topbar from '../../Layout/Topbar';
+
 import { Input, Select } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faIdBadge, faMobileScreen, faPeopleGroup, faPerson, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -89,7 +89,7 @@ const AddUser = () => {
             )}
 
             <div className='flex flex-col grow bg-white'>
-                <Topbar />
+               
                 <p className='px-4 py-2 text-lg lg:text-xl font-bold tracking-wider'>Add an User</p>
                 <form className='addUser' onSubmit={handleSubmit}>
                     <div className='flex items-center'>

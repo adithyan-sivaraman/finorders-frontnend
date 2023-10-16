@@ -1,4 +1,3 @@
-import Topbar from '../../Layout/Topbar';
 import { apiEndpoint } from '../../ApiUtils/apiendpoint';
 import { useEffect, useState } from 'react';
 import EditCustomer from './EditCustomer';
@@ -42,7 +41,7 @@ const ListCustomer = () => {
         <div className="flex w-screen h-screen select-none font-lato">
 
             <div className='flex flex-col grow bg-white'>
-                <Topbar />
+                
                 {showForm && <EditCustomer userData={filterData} onClose={handleClose} />}
 
                 {spinner && (

@@ -1,4 +1,3 @@
-import Topbar from '../../Layout/Topbar';
 import { IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Tag, TagLabel, Tooltip, useDisclosure } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons'
 import { apiEndpoint } from "../../ApiUtils/apiendpoint";
@@ -133,7 +132,7 @@ const AddOrder = () => {
             )}
 
             <div className='flex flex-col grow bg-white'>
-                <Topbar />
+                
                 <p className='px-4 py-2 text-lg lg:text-xl font-bold tracking-wider'>Create a service order</p>
                 <form className='addOrder' onSubmit={handleSubmit} id='addOrder'>
                     <div className='flex flex-col sm:flex-row sm:items-center py-1 sm:py-2'>

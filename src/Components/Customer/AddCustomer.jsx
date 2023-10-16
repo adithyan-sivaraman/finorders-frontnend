@@ -1,5 +1,4 @@
 /* eslint-disable react/no-children-prop */
-import Topbar from '../../Layout/Topbar';
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAddressBook, faCircleUser, faEnvelope, faG, faMapMarker, faMapPin, faMobileScreen, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -78,7 +77,7 @@ const AddCustomer = () => {
         )}
             
             <div className='flex flex-col grow bg-white'>
-                <Topbar />
+                
                 <p className='px-4 py-2 text-lg lg:text-xl font-bold tracking-wider'>Add Customer</p>
                 <form className='addCustomer' onSubmit={handleSubmit}>
 

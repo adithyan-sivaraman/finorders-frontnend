@@ -5,7 +5,7 @@ import { apiEndpoint } from "../../ApiUtils/apiendpoint";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Divider, Switch } from "@chakra-ui/react";
 
-const UserLogin = () => {
+const UserLogin = ({onLogin}) => {
     const navigate = useNavigate();
     const [dialogOpen, setDialogOpen] = useState(false);
     const [dialogText, setDialogText] = useState('');
@@ -60,6 +60,7 @@ const UserLogin = () => {
 
         if (data.message === "valid login") {
             const { user, type } = data;
+            onLogin();
             localStorage.setItem("orders_user", JSON.stringify({ user: user, type: type }));
             navigate('dashboard');
         }
@@ -83,6 +84,7 @@ const UserLogin = () => {
     }
 
     if (localStorage.getItem("orders_user") && JSON.parse(localStorage.getItem("orders_user"))) {
+        onLogin();
         return <Navigate to={'/dashboard'} replace />
     }
 

@@ -5,7 +5,7 @@
 @layer components {
 
   .header{
-    @apply flex  bg-indigo-100 font-poppins select-none  items-center px-4 py-2 gap-5 h-14 relative
+    @apply flex  bg-indigo-100 font-poppins select-none  items-center px-4 py-2 gap-5 !h-14 w-screen
   }
 
   .usertext{

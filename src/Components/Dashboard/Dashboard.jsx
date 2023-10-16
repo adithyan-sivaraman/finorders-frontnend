@@ -42,7 +42,7 @@ const Dashboard = () => {
         <div className="flex w-screen h-screen select-none font-lato overflow-hidden">
 
             <div className='flex flex-col flex-1 bg-white overflow-x-hidden overflow-y-auto'>
-                <Topbar />
+               
 
                 {spinner && (
                     <div className='p-2 h-full overflow-y-auto w-full items-center justify-center flex gap-5'>

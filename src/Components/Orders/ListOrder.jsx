@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Topbar from '../../Layout/Topbar';
 import { apiEndpoint } from '../../ApiUtils/apiendpoint';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -184,9 +183,7 @@ const ListOrder = () => {
             )}
 
             <div className='flex flex-col grow bg-white'>
-                <Topbar />
-
-
+                
                 {spinner && (
                     <div className='p-2 h-full overflow-y-auto w-full items-center justify-center flex gap-5'>
                         <p className='text-lg font-bold loading'>Loading</p>
@@ -201,7 +198,7 @@ const ListOrder = () => {
                 )}
 
 
-                {!spinner && (<div className='p-2 h-full overflow-y-auto'>
+                {!spinner && (<div className='p-2 h-full '>
                     <div className='flex w-full items-center gap-3'>
                         <p className='py-2 text-lg lg:text-xl font-bold tracking-wider font-lato'>List of Orders</p>
 
