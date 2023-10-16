@@ -26,11 +26,19 @@ function App() {
     setTopBar(false)
   }
 
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("orders_user"));
+    if(user){
+      setTopBar(true)
+    }
+    
+  },[])
+
   return (
     <Router>
-      <div className='w-screen h-screen flex flex-col items-center justify-center'>
+      <div className={topBar?'main':'main justify-center'}>
         {topBar && <Topbar onLogout={handleLogout} />}
-        
+        <div className={topBar?'flex overflow-x-hidden':'flex container'}> 
           <Routes>
 
             <Route path='/' element={<UserLogin onLogin={handleLogin}/>} />
@@ -55,7 +63,7 @@ function App() {
 
           </Routes>
         </div>
-      
+        </div>
     </Router>
   )
 }

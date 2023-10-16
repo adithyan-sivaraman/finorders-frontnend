@@ -156,7 +156,7 @@ const ListOrder = () => {
     }
 
     return (
-        <div className="flex w-screen h-screen select-none font-lato">
+        <div className="flex w-screen select-none font-lato overflow-x-hidden overflow-y-auto">
             {showForm && <OrderComplete order={filterData} onClose={handleClose} />}
             {viewForm && <ViewOrder order={filterData} onClose={handleClose} />}
             {dialogOpen && (
@@ -185,7 +185,8 @@ const ListOrder = () => {
             <div className='flex flex-col grow bg-white'>
                 
                 {spinner && (
-                    <div className='p-2 h-full overflow-y-auto w-full items-center justify-center flex gap-5'>
+                    <div className='fixed w-screen h-screen top-0 left-0 flex items-center justify-center'>
+                    <div className='p-2 overflow-hidden items-center justify-center flex gap-5'>
                         <p className='text-lg font-bold loading'>Loading</p>
                         <Spinner
                             speed='0.7s'
@@ -195,10 +196,11 @@ const ListOrder = () => {
                             size='xl'
                         />
                     </div>
+                    </div>
                 )}
 
 
-                {!spinner && (<div className='p-2 h-full '>
+                {!spinner && (<div className='p-2'>
                     <div className='flex w-full items-center gap-3'>
                         <p className='py-2 text-lg lg:text-xl font-bold tracking-wider font-lato'>List of Orders</p>
 

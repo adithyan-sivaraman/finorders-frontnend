@@ -57,7 +57,7 @@ const AddCustomer = () => {
     }
 
     return (
-        <div className="flex w-screen h-screen select-none">
+        <div className="flex w-screen select-none font-lato overflow-x-hidden overflow-y-auto">
         {loader && <Loader />}
 
         {dialogOpen && (

@@ -7,6 +7,7 @@ import Profile from "../Components/User/Profile";
 import { Divider } from "@chakra-ui/react";
 
 function Topbar({onLogout}) {
+  
   const userData = JSON.parse(localStorage.getItem('orders_user'))
   const username = userData?JSON.parse(localStorage.getItem('orders_user')).user:"";
   const userType = userData?JSON.parse(localStorage.getItem("orders_user")).type:"";

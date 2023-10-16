@@ -68,7 +68,7 @@ const AddUser = () => {
     }
 
     return (
-        <div className="flex w-screen h-screen select-none font-lato">
+        <div className="flex w-screen select-none font-lato overflow-x-hidden overflow-y-auto">
 
             {loader && <Loader />}
 
