@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { faEye, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  useState } from "react";
 import { apiEndpoint } from "../../ApiUtils/apiendpoint";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Divider, Switch } from "@chakra-ui/react";
+import Loader from "../../Layout/Loader";
 
 const UserLogin = ({onLogin}) => {
     const navigate = useNavigate();
@@ -18,8 +20,8 @@ const UserLogin = ({onLogin}) => {
     const [cpasswordType, setcPasswordType] = useState(true);
     const [firstLogin, setFirstLogin] = useState(false);
     const [error, setError] = useState(false);
+    const [loader, setLoader] = useState(false);
 
-    
     const handleInput = (e) => {
         const { name, value } = e.target;
         setLogin({ ...login, [name]: value });
@@ -49,16 +51,17 @@ const UserLogin = ({onLogin}) => {
             }, 2000)
             return;
         }
-
+        setLoader(true)
         const response = await fetch(`${apiEndpoint}/user/login`, {
             method: 'POST',
             body: JSON.stringify({ data: login, fLogin: firstLogin }),
             headers: { 'Content-Type': 'application/json' },
         });
         const data = await response.json();
-
+        console.log(data)
 
         if (data.message === "valid login") {
+            setLoader(false)
             const { user, type } = data;
             onLogin();
             localStorage.setItem("orders_user", JSON.stringify({ user: user, type: type }));
@@ -66,6 +69,7 @@ const UserLogin = ({onLogin}) => {
         }
 
         if (data.message === "user not active") {
+            setLoader(false)
             setDialogText("User has not been activated. Please use First Time Login option")
             setDialogOpen(true)
             setTimeout(() => {
@@ -74,6 +78,7 @@ const UserLogin = ({onLogin}) => {
         }
 
         if (data.message === "invalid login") {
+            setLoader(false)
             setDialogText("Username or password is invalid")
             setDialogOpen(true)
             setTimeout(() => {
@@ -91,6 +96,7 @@ const UserLogin = ({onLogin}) => {
 
     return (
         <div className="container select-none ml-2 mr-2 sm:ml-0 sm:mr-0" id="loginForm">
+            {loader && <Loader />}
             {dialogOpen && (
 
                 <dialog
