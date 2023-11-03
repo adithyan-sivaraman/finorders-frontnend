@@ -58,7 +58,7 @@ const UserLogin = ({onLogin}) => {
             headers: { 'Content-Type': 'application/json' },
         });
         const data = await response.json();
-        console.log(data)
+        console.log(data.message)
 
         if (data.message === "valid login") {
             setLoader(false)
